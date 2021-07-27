@@ -36,8 +36,8 @@ ORDER BY COUNT(staff_id) DESC;
 
 
 -- Question 6 - How many different district names are there?
--- Answer: 603
-SELECT COUNT(district)
+-- Answer: 603 (wrong, actually 378.  correction made below)
+SELECT COUNT(DISTINCT district)
 FROM address;
 
 

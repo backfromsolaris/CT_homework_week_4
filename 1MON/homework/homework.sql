@@ -28,15 +28,11 @@ WHERE last_name = 'William';
 
 
 -- Question 5 - What store employee sold the most rentals?
--- Answer: staff_id '2' - Jon Stephens
+-- Answer: staff_id '1'
 SELECT staff_id, COUNT(staff_id)
-FROM payment
+FROM rental
 GROUP BY staff_id
 ORDER BY COUNT(staff_id) DESC;
-
-SELECT staff_id, first_name, last_name
-FROM staff
-WHERE staff_id = '2';
 
 
 -- Question 6 - How many different district names are there?

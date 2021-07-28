@@ -1,0 +1,2 @@
+-- Question 1: List all customers who live in Texas (use JOINs):
+-- Answer: 

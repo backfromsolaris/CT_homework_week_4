@@ -68,4 +68,19 @@ GROUP BY rating;
 
 -- Question 7: Show all customers who have made a single payment above $6.99
 --     (use subqueries)
--- Answer: 
+-- Answer: 539 customers, see query...
+SELECT first_name, last_name
+FROM customer
+WHERE customer_id in(
+	SELECT customer_id
+	FROM payment
+	WHERE amount > 6.99
+);
+
+
+-- Question 8: How many free rentals did our stores give away?
+-- Answer: 24 free rentals
+SELECT amount, COUNT(amount)
+FROM payment
+GROUP BY amount
+HAVING amount = 0;

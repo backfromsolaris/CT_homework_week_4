@@ -75,7 +75,8 @@ WHERE customer_id in(
 	SELECT customer_id
 	FROM payment
 	WHERE amount > 6.99
-);
+)
+ORDER BY last_name ASC;
 
 
 -- Question 8: How many free rentals did our stores give away?

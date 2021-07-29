@@ -75,6 +75,8 @@ WHERE customer_id in(
 	SELECT customer_id
 	FROM payment
 	WHERE amount > 6.99
+	GROUP BY customer_id
+	HAVING COUNT(amount) = 1
 )
 ORDER BY last_name ASC;
 

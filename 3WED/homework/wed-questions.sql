@@ -79,7 +79,7 @@ WHERE customer_id in(
 	HAVING COUNT(amount) = 1
 )
 ORDER BY last_name ASC;
-
+ 
 
 -- Question 8: How many free rentals did our stores give away?
 -- Answer: 24 free rentals

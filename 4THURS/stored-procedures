@@ -1,0 +1,83 @@
+-- Stored Procedures and functions with SQL
+
+-- explore the payment table
+SELECT *
+FROM payment;
+
+
+-- Stored Procedure
+-- Simulating a late fee charge
+
+CREATE OR REPLACE PROCEDURE latefee(
+	customer INTEGER,
+	lateFeeAmount DECIMAL,
+	transaction_id INTEGER	
+)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+	-- Add late fee to customer payment amount
+	UPDATE payment
+	SET amount = amount + lateFeeAmount
+	WHERE customer_id = customer AND payment_id = transaction_id;
+	
+	-- Commit the above statement inside of a transation
+	COMMIT;
+END;
+$$;
+
+-- Calling a Stored Procedure
+CALL latefee(341,5.00,17503);
+
+-- Validating changes
+SELECT * FROM payment WHERE payment_id = 17503;
+
+-- Dropping or deleting the procedure
+DROP PROCEDURE latefee;
+
+
+
+-- For loop through a table based on a query for past due payments
+CREATE OR REPLACE PROCEDURE latefee2()
+LANGUAGE plpgsql
+AS $$
+DECLARE
+	t_row record;
+BEGIN
+	FOR t_row IN SELECT * FROM payment LOOP
+		UPDATE payment
+		SET amount = amount + 5
+		WHERE payment_date > '02/17/2007' AND payment.payment_id = t_row.payment_id;
+	END LOOP;
+END;
+$$;
+
+
+CALL latefee2()
+
+SELECT * FROM payment
+
+
+-- Stored functions example
+-- STORED Function to insert data into actor table
+
+CREATE OR REPLACE FUNCTION add_actor(
+	_actor_id INTEGER,
+	_first_name VARCHAR,
+	_last_name VARCHAR,
+	_last_update TIMESTAMP WITHOUT TIME ZONE
+)
+RETURNS void
+AS $$
+BEGIN
+	INSERT INTO actor(actor_id, first_name, last_name, last_update)
+	VALUES(_actor_id, _first_name, _last_name, _last_update);
+END;
+$$
+LANGUAGE plpgsql;
+
+	
+-- Calling a function is different than calling a procedure - we use SELECT
+SELECT add_actor(500, 'Dwayne', 'Johnson', NOW()::timestamp);
+
+SELECT * FROM actor WHERE actor_id = 500

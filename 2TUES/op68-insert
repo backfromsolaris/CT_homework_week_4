@@ -1,0 +1,77 @@
+-- INSERTing data into a table
+
+INSERT INTO customer(
+	customer_id,
+	first_name,
+	last_name,
+	address,
+	billing_info
+)VALUES(
+	1,
+	'Joel',
+	'Carter',
+	'555 Circle Dr, Chicago, IL 60611',
+	'4242-4242-4242-4242 623 05/22'
+);
+
+
+
+-- INSERT INTO brand
+INSERT INTO brand(
+	seller_id,
+	brand_name,
+	contact_number,
+	address
+)VALUES(
+	1,
+	'Coding Temple LLC',
+	'773-555-4490',
+	'222 W Ontario St Chicgao, IL'
+);
+
+INSERT INTO inventory(
+	upc,
+	total_stock
+)VALUES(
+	1,
+	50
+);
+
+INSERT INTO products(
+	item_id,
+	prod_name,
+	price,
+	seller_id,
+	upc
+)VALUES(
+	1,
+	'Python 101',
+	20.00,
+	1,
+	1
+);
+
+INSERT INTO cart(
+	cart_id,
+	customer_id
+)VALUES(
+	1,
+	1
+);
+
+INSERT INTO order_(
+	order_id,
+	sub_total,
+	total_cost,
+	upc,
+	cart_id
+)VALUES(
+	1,
+	100.00,
+	110.00,
+	1,
+	1
+);
+
+SELECT *
+FROM brand;
